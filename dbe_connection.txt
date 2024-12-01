@@ -1,4 +1,4 @@
 - Server name: server241cs.database.windows.net
 - Data base: POS
-- login: POS_admin
+- login: adminPOS
 - password: 1231!#ASDF!a
