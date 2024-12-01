@@ -1,0 +1,3 @@
+- This is the repo of 241 - database's assignmet 2 
+- DBMS: Sql Server
+- Deploying data base: Azure
