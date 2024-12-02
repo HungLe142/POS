@@ -1,2 +1,0 @@
-EXEC ThemDuLieuMauChoKhachHang;
-GO

@@ -1,6 +1,0 @@
-SELECT name 
-FROM sys.tables;
-GO
-
-SELECT *
-FROM KhachHang
