@@ -1,14 +1,13 @@
 CREATE TABLE KhachHang (
-    ID_KhachHang VARCHAR(20) NOT NULL,
+    ID_KhachHang VARCHAR(20) PRIMARY KEY,
     Ten VARCHAR(30) NOT NULL,
     SDT_KhachHang VARCHAR(15) NOT NULL,
     Loai_KH VARCHAR(20) NOT NULL, 
     Tong_HoaDon DECIMAL(18, 2),
-    PRIMARY KEY (ID_KhachHang, SDT_KhachHang)
 );
 
 CREATE TABLE NhanVien(
-    ID_NhanVien VARCHAR(20),
+    ID_NhanVien VARCHAR(20) PRIMARY KEY,
     Ten VARCHAR(30) NOT NULL,
     SDT_Nhanvien VARCHAR(15),
     Trang_thai VARCHAR(20) NOT NULL, --ENUM('Tích cực', 'Bình thường', 'Không tích cực', 'Nghỉ làm'),
@@ -16,26 +15,23 @@ CREATE TABLE NhanVien(
     He_so_luong DECIMAL(10, 2) NOT NULL,
     Bang_cap VARCHAR(50),
     Ngay_bat_dau DATE,
-    ID_buttoan VARCHAR(20) NOT NULL,
-    PRIMARY KEY (ID_NhanVien, ID_buttoan)
+    ID_buttoan VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE CongTyThucPham(
-    ID_congty VARCHAR(20),
+    ID_congty VARCHAR(20) PRIMARY KEY,
     Ten VARCHAR(30) NOT NULL,
     SDT VARCHAR(15),
     Email VARCHAR(30) NOT NULL,
-    ID_buttoan VARCHAR(20) NOT NULL,
-    PRIMARY KEY (ID_congty, ID_buttoan)
+    ID_buttoan VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE CongTyVanChuyen(
-    ID_congty VARCHAR(20),
+    ID_congty VARCHAR(20) PRIMARY KEY,
     Ten VARCHAR(30) NOT NULL,
     SDT VARCHAR(15),
     Email VARCHAR(30) NOT NULL,
-    ID_buttoan VARCHAR(20) NOT NULL,
-    PRIMARY KEY (ID_congty, ID_buttoan)
+    ID_buttoan VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE CaLam(
@@ -47,7 +43,7 @@ CREATE TABLE CaLam(
 
 CREATE TABLE QuanLyCaLam (
     ID_calam INT NOT NULL,
-    ID_NhanVien INT NOT NULL,
+    ID_NhanVien VARCHAR(20) NOT NULL,
     GioVaoLam TIME ,
     GioRaVe TIME,
     PRIMARY KEY(ID_calam, ID_NhanVien)
@@ -92,7 +88,7 @@ CREATE TABLE ButToanChi (
 
 CREATE TABLE DonHang(
     ID_don_hang VARCHAR(10) PRIMARY KEY,
-    SDT_KhachHang VARCHAR(15),
+    ID_KhachHang VARCHAR(20),
     ID_NhanVien VARCHAR(20) NOT NULL,
     Trang_thai VARCHAR(20) NOT NULL, --ENUM('Pending', 'Not_paid', 'Paid', 'Success', 'Cancel') NOT NULL,
     Ghi_chu_trang_thai VARCHAR(200) NOT NULL, --ENUM('Chờ xử lý', 'Đã nhận đơn (chưa thanh toán)', 'Đã thanh toán (chưa hoàn thành món)', 'Thành công', 'Đặt nhầm', 'Ship quá lâu', 'Món ăn bị hỏng') NOT NULL, 
@@ -129,4 +125,8 @@ CREATE TABLE Vi_pham(
     Gio TIME NOT NULL,
     Loi VARCHAR(500) NOT NULL,
     Tien_phat INT
+);
+
+CREATE TABLE Ben_Nhan(
+    ID_ben_nhan VARCHAR(20) PRIMARY KEY
 );
