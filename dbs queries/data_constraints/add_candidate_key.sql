@@ -1,0 +1,24 @@
+ALTER TABLE KhachHang
+ADD CONSTRAINT UQ_KH_SDT_KhachHang UNIQUE (SDT_KhachHang);
+
+ALTER TABLE NhanVien
+ADD CONSTRAINT UQ_NV_ID_buttoan UNIQUE (ID_buttoan);
+
+ALTER TABLE CongTyThucPham
+ADD CONSTRAINT UQ_CTTP_email UNIQUE (Email);
+
+ALTER TABLE CongTyThucPham
+ADD CONSTRAINT UQ_CTTP_ID_buttoan UNIQUE (ID_buttoan);
+
+ALTER TABLE CongTyVanChuyen
+ADD CONSTRAINT UQ_CTVC_email UNIQUE (Email);
+
+ALTER TABLE CongTyVanChuyen
+ADD CONSTRAINT UQ_CTVC_ID_buttoan UNIQUE (ID_buttoan);
+
+ALTER TABLE CaLam
+ADD CONSTRAINT UQ_Ngay_Gio UNIQUE (Ngay, GioBatDau, GioKetThuc);
+
+
+
+
