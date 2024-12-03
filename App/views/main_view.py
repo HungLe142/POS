@@ -1,5 +1,5 @@
 import tkinter as tk
-from controllers.main_controller import fetch_data
+from controllers.main_controller import get_data_from_db
 from views.vỉew1 import show_view1
 from views.vỉew2 import show_view2
 from views.view3 import show_view3
@@ -7,6 +7,7 @@ from views.view4 import show_view4
 
 class MainView:
     def __init__(self, root):
+        self.dish_buff = None
         self.root = root
         self.root.title("POS App")
         self.root.geometry("900x600")
@@ -34,8 +35,9 @@ class MainView:
         # Nội dung chính (mặc định hiển thị View 1)
         self.show_view1()
 
-    def load_data(self):
-        data = fetch_data()
+    def load_data(self): # Deprecated
+        data = get_data_from_db()
+        self.dish_buff = data
         if data:
             for row in data:
                 self.data_listbox.insert(tk.END, row)
