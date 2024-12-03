@@ -1,0 +1,8 @@
+YÊU CẦU:
+     Viết 2 thủ tục trong đó chỉ chứa các câu truy vấn để hiển thị dữ liệu và tham số đầu vào là các giá trị trong mệnh đề WHERE và/hoặc Having (nếu có), gồm: - 1 câu truy vấn từ 2 bảng trở lên có mệnh đề where, order by 
+        - 1 câu truy vấn có aggreate function, group by, having, where và order by có liên  kết từ 2 bảng trở lên 
+        - Chuẩn bị câu lệnh và dữ liệu minh họa cho việc gọi thủ tục khi báo cáo. 
+
+PHÂN CÔNG: Thịnh
+
+* Note: bảng món ăn trong ngày, phục vụ cho câu 4

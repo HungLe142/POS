@@ -1,0 +1,7 @@
+YÊU CẦU:
+        Viết 2 hàm thỏa yêu cầu sau: 
+                - Chứa câu lệnh IF và LOOP để tính toán dữ liệu được lưu trữ 
+                - Chứa câu lệnh truy vấn dữ liệu, lấy dữ liệu từ câu truy vấn để kiểm tra tính toán 
+                - Có tham số đầu vào và kiểm tra tham số đầu vào 
+                - Chuẩn bị các câu lệnh và dữ liệu để minh họa việc gọi hàm khi báo cáo.         
+PHÂN CÔNG: Tú

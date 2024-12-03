@@ -1,0 +1,22 @@
+YÊU CẦU:
+    Viết 2 trigger để kiểm soát các hành động INSERT, UPDATE, DELETE trên một số bảng đã tạo. Thỏa yêu cầu sau: 
+        - Có ít nhất 1 trigger có tính toán cập nhật dữ liệu trên bảng dữ liệu khác bảng  đang được thiết lập trigger. (Trigger liên quan đến việc tính toán thuộc tính dẫn  xuất) 
+        - Chuẩn bị câu lệnh và dữ liệu minh họa cho việc kiểm tra trigger khi báo cáo.
+
+        
+ĐÃ CÓ: 
+        + Trigger tự động tạo bảng bên nhận khi insert một nhân viên, công ty cung cấp thực phẩm, công ty vận chuyển, xem 1.1/1/semantic constraints/trigger/auto_ben_nhan/
+        + Trigger tự động cập nhật hệ số lương của nhân viên dựa trên chức vụ, xem 1.1/1/semantic constraints/trigger/staff_salary_cofficient.sql
+        + Trigger kiểm tra thời gian checkin, checkout của nhân viên
+        + Trigger kiểm tra số lượng các món ăn và số lương khẩu phần ở mỗi món
+    
+TO DO:
+    + Xóa một nhân viên
+
+BACKLOG: các trigger:
+    + Chỉnh sửa thông tin của nhân viên
+    + Chỉnh sửa thông tin khách hàng
+    + Chỉnh sửa thông tin đơn hàng
+    + Thêm bút toán
+
+PHÂN CÔNG: Tú
