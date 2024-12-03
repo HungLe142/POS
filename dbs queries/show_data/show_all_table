@@ -26,7 +26,7 @@ FROM MonAn
 
 SELECT *
 FROM MonAn_TrongNgay
-
+----------- chưa tạo dữ liệu cho các bảng phía dưới--------------
 SELECT *
 FROM ButToanThu
 
@@ -47,4 +47,7 @@ FROM Quan_ly_mon_an_trong_DonHang
 
 SELECT *
 FROM Vi_pham
+
+SELECT *
+FROM Ben_nhan
 
