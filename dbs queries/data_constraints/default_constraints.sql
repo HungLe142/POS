@@ -1,2 +1,11 @@
+ALTER TABLE KhachHang
+ADD CONSTRAINT DF_KH_Loai DEFAULT 'Thong thuong' FOR Loai_KH;
+
+ALTER TABLE KhachHang
+ADD CONSTRAINT Tong_HoaDon DEFAULT 0 FOR Tong_HoaDon;
+
 ALTER TABLE NhanVien
-ADD CONSTRAINT DF_NV_TrangThai DEFAULT N'Bình thường' FOR Trang_thai;
+ADD CONSTRAINT DF_NV_TrangThai DEFAULT 'Binh thuong' FOR Trang_thai;
+
+ALTER TABLE NhanVien
+ADD CONSTRAINT DF_NV_HSL DEFAULT 0 FOR He_so_luong;
