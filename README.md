@@ -18,3 +18,5 @@
             + Hệ số lương của quản lý, đầu bếp, thu ngân, bồi bàn lần lượt là: 150k/h, 100k/h, 30k/h, 25k/h, (trigger)
             + Mã đơn hàng có dạng là “OD” hoặc “ODS” được theo sau bởi 6 số ngẫu nhiên, với “OD” là đơn hàng tại chỗ, và “ODS” là đơn hàng trực tuyến (check)
             + Mỗi ca làm việc kéo dài 4 tiếng (check)
+
+    + Some other constraints: check sdt khách, nv
