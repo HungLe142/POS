@@ -8,6 +8,7 @@ from views.view4 import show_view4
 class MainView:
     def __init__(self, root):
         self.dish_buff = None
+        self.staff_buff = None
         self.root = root
         self.root.title("POS App")
         self.root.geometry("900x600")
@@ -52,7 +53,7 @@ class MainView:
         show_view3(self)
 
     def show_view4(self):
-        show_view2(self)
+        show_view4(self)
 
     def clear_content(self):
         for widget in self.content_frame.winfo_children():
