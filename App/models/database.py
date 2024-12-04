@@ -20,6 +20,16 @@ def fetch_data_daily_dishes():
         return result
     return None
 
+def get_list_of_staff():
+    conn = get_connection()
+    if conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM NhanVien")
+        result = cursor.fetchall()
+        conn.close()
+        return result
+    return None
+
 def create_new_order():
     print(111)
     pass
