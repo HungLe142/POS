@@ -18,7 +18,7 @@ BEGIN
         RETURN;
     END
 
-    -- Thêm hoặc cập nhật dữ liệu vào bảng QuanLyCaLam
+    -- Thêm hoặc cập nhật dữ liệu vào bảng NhanVien
     DELETE FROM NhanVien
     WHERE ID_NhanVien IN (SELECT ID_NhanVien FROM deleted)
 END;
