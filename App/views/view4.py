@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 from controllers.view4_controller import get_staff
-from views.vỉew1 import sort_table
+from views.view1 import sort_table
 
 
 def show_view4(parent):
