@@ -1,7 +1,7 @@
 import tkinter as tk
 from controllers.main_controller import get_data_from_db
-from views.vỉew1 import show_view1
-from views.vỉew2 import show_view2
+from views.view1 import show_view1
+from views.view2 import show_view2
 from views.view3 import show_view3
 from views.view4 import show_view4
 

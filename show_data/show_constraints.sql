@@ -8,7 +8,7 @@ FROM
     LEFT JOIN INFORMATION_SCHEMA.CHECK_CONSTRAINTS AS cc
     ON tc.CONSTRAINT_NAME = cc.CONSTRAINT_NAME
 WHERE 
-    tc.TABLE_NAME = 'KhachHang' -- Change this name to the the table's name you wanna show.
+    tc.TABLE_NAME = 'NhanVien' -- Change this name to the the table's name you wanna show.
 ORDER BY 
     tc.CONSTRAINT_TYPE, 
     tc.CONSTRAINT_NAME;
