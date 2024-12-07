@@ -8,14 +8,14 @@ BEGIN
     SET @Mot_mon = 5;
     IF EXISTS(SELECT 1 FROM MonAn_TrongNgay WHERE Ngay = @Ngayban)
     BEGIN
-        IF(@Mot_mon < ANY (SELECT So_luong_con FROM MonAnTrongNgay WHERE Ngay = @Ngayban))
+        IF(@Mot_mon < ANY (SELECT So_luong_con FROM MonAn_TrongNgay WHERE Ngay = @Ngayban))
             SET @Check_result = 0;
         ELSE
             BEGIN
                 DECLARE @Tat_ca_mon AS INT
                 SET @Tat_ca_mon = (SELECT So_luong_tong_con FROM 
                 (SELECT Ngay, SUM(So_luong_con) AS So_luong_tong_con FROM 
-                (SELECT Ngay, So_luong_con FROM Mon_An_Trong_Ngay WHERE Ngay = @Ngayban) AS T
+                (SELECT Ngay, So_luong_con FROM MonAn_TrongNgay WHERE Ngay = @Ngayban) AS T
                 GROUP BY T.Ngay) AS K)
                 IF(@Tat_ca_mon >20) 
                 SET @Check_result = 0;
