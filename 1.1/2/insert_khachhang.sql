@@ -26,10 +26,10 @@ VALUES
  'CUS000007', 'Le Cao Tri', '0812552389'
 ),
 ( 
- 'CUS000008', 'Tran The Manh', '0948315788'
+ 'CUS000008', 'Tran The Manh', '0948315786'
 ),
 ( 
- 'CUS000009', 'Tran The Lam', '0948315758'
+ 'CUS000009', 'Tran The Lam', '0948315658'
 ),
 ( 
  'CUS000010', 'Tran The Cuong', '0468315789'
@@ -41,7 +41,7 @@ VALUES
  'CUS000012', 'Tran Cao Lam', '0468315758'
 ),
 ( 
- 'CUS000013', 'Phan Cao Cuong', '0468315789'
+ 'CUS000013', 'Phan Cao Cuong', '0468325789'
 ),
 ( 
  'CUS000014', 'Do Cao Manh', '0538315788'
