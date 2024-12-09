@@ -8,11 +8,13 @@ AS
 BEGIN
 	-- Check dieu kien SDT
 	IF ISNUMERIC(@SdtKhachHang) = 0
-		RAISERROR('SDT phai la mot day so', 16, 1)
+		RAISERROR('SDT phai la mot day so', 16, 1);
 	IF LEFT(@SdtKhachHang, 1) != '0'
-		RAISERROR('SDT phai co so dau tien la "0"', 16, 1)
+		RAISERROR('SDT phai co so dau tien la "0"', 16, 1);
 	IF LEN(@SdtKhachHang) != 10
-		RAISERROR('SDT phai bao gom 10 chu so', 16, 1)
+		RAISERROR('SDT phai bao gom 10 chu so', 16, 1);
+	IF NOT EXISTS (SELECT 1 FROM KhachHang WHERE SDT_KhachHang = @SdtKhachHang)
+		RAISERROR('Khong tim thay SDT khach hang trong Database', 16, 1);
 
 	-- Check dieu kien ID NV
 	IF LEN(@ID_NV) != 8
