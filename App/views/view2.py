@@ -4,7 +4,8 @@ from widgets.frame import create_sb_rf
 from widgets.table import on_item_select
 
 from tkinter import ttk, messagebox
-from controllers.view2_controller import get_orders
+from controllers.view2_controller import get_orders, update_order, update_order1, cancel_the_order
+
 
 
 def show_view2(parent):
@@ -124,22 +125,67 @@ def create_view2_right_frame_content(parent, root):
         root.right_frame_v2.entry_order_note = ttk.Entry(frame5)
         root.right_frame_v2.entry_order_note.pack(side='right', fill='x', expand=True, padx=5) 
 
-        # Dòng 6: Nút xác nhận thay đổi:
+        # Dòng 6: Nút xác nhận thay đổi, hủy đơn:
         frame6 = ttk.Frame(parent)
         frame6.pack(padx=10, pady=4, fill='x', anchor='w')
-        submit_button = ttk.Button(frame6, text="Xác nhận thay đổi", command=lambda: change_order_data(entry)) 
-        submit_button.pack(side='right', fill='x', expand=True, padx=5) 
+        submit_button = ttk.Button(frame6, text="Xác nhận thay đổi", command=lambda: change_order_data(root)) 
+        submit_button.pack(side='left', fill='x', expand=True, padx=5)
+        cancel_order_button = ttk.Button(frame6, text="Hủy đơn", command=lambda: cancel_order(root)) 
+        cancel_order_button.pack(side='right', fill='x', expand=True, padx=5)
 
-def change_order_data(entry):
-    print("Updating order data")
-    pass
+        # Dòng 7: Nút đóng đơn:
+        frame7 = ttk.Frame(parent)
+        frame7.pack(padx=10, pady=4, fill='x', anchor='w')
+        close_order_button = ttk.Button(frame7, text="Đóng đơn hàng", command=lambda: close_order(root)) 
+        close_order_button.pack(side='left', fill='x', expand=True, padx=5)    
+
+def change_order_data(root):
+    try:
+        with root.view_lock:
+            status = update_order(root)
+            if status == True:
+                messagebox.showinfo("Success", "Update order successfully!")
+                return
+            else:
+                root.notificate(status)
+    except TimeoutError:
+        messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
+
+def close_order(root):
+    try:
+        with root.view_lock:
+            status = update_order1(root)
+            if status == True:
+                messagebox.showinfo("Success", "Update order successfully!")
+                return
+            else:
+                root.notificate(status)
+    except TimeoutError:
+        messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
+
+def cancel_order(root):
+    try:
+        with root.view_lock:
+            status = cancel_the_order(root)
+            if status == True:
+                messagebox.showinfo("Success", "Cancelthe order successfully!")
+                return
+            else:
+                root.notificate(status)
+    except TimeoutError:
+        messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
 
 class Right_frame_V2_elements():
     def __init__(self):
-        entry_sdt = None
-        entry_note_status = None
-        entry_init_time = None
-        entry_fin_time = None
-        entry_order_note = None
-    
+        # Storing the entry
+        self.entry_sdt = None
+        self.entry_note_status = None
+        self.entry_init_time = None
+        self.entry_fin_time = None
+        self.entry_order_note = None
+        
+        # Storing other data of the choosen order
+        self.ID_don_hang = None
+        self.Trang_thai = None
+
         

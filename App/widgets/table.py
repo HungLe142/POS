@@ -9,25 +9,25 @@ def refresh_action(root):
         return
 
     def target():
-        with root.view_lock: 
-            print("Refreshing data...")
+        #with root.view_lock: 
+        print("Refreshing data...")
 
-            root.dish_buff = None
-            root.staff_buff = None
-            root.order_buff = None
+        root.dish_buff = None
+        root.staff_buff = None
+        root.order_buff = None
 
-            if root.in_view1:
-                root.show_view1()
-            elif root.in_view2:
-                root.show_view2()
-            elif root.in_view2:
-                root.show_view3()
-            elif root.in_view2:
-                root.show_view4()
+        if root.in_view1:
+            root.show_view1()
+        elif root.in_view2:
+            root.show_view2()
+        elif root.in_view2:
+            root.show_view3()
+        elif root.in_view2:
+            root.show_view4()
 
     thread = threading.Thread(target=target)
     thread.start()
-    thread.join(timeout=10)  # Thời gian chờ là 5 giây
+    thread.join(timeout=5)  # Thời gian chờ là 5 giây
 
     if thread.is_alive():
         print("Operation took too long and was cancelled.")
@@ -44,9 +44,14 @@ def on_item_select(table, main_view):
     with main_view.view_lock:
         if main_view.in_view2:
             if main_view.right_frame_v2:
-
+               
+                main_view.right_frame_v2.ID_don_hang = item_data[0]
+                main_view.right_frame_v2.Trang_thai = item_data[2]
+                
+                main_view.right_frame_v2.entry_sdt.config(state='normal')
                 main_view.right_frame_v2.entry_sdt.delete(0, 'end') 
                 main_view.right_frame_v2.entry_sdt.insert(0, item_data[1])
+                main_view.right_frame_v2.entry_sdt.config(state='readonly')
 
                 main_view.right_frame_v2.entry_note_status.config(state='normal')
                 main_view.right_frame_v2.entry_note_status.delete(0, 'end') 
@@ -58,8 +63,11 @@ def on_item_select(table, main_view):
                 main_view.right_frame_v2.entry_init_time.insert(0, item_data[5])
                 main_view.right_frame_v2.entry_init_time.config(state='readonly')
 
+                main_view.right_frame_v2.entry_fin_time.config(state='normal')
                 main_view.right_frame_v2.entry_fin_time.delete(0, 'end') 
                 main_view.right_frame_v2.entry_fin_time.insert(0, item_data[6])
+                #if main_view.right_frame_v2.entry_fin_time.get() != 'None':
+                main_view.right_frame_v2.entry_fin_time.config(state='readonly')
 
                 main_view.right_frame_v2.entry_order_note.delete(0, 'end') 
                 main_view.right_frame_v2.entry_order_note.insert(0, item_data[7])

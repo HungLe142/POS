@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 from controllers.main_controller import get_data_from_db
 from views.view1 import show_view1
 from views.view2 import show_view2
@@ -111,10 +112,50 @@ class MainView:
     
     def check_initial_load(self):
         if self.in_view1 == False and self.in_view2 == False and self.in_view3 == False and self.in_view4 == False:
+            self.notificate(9)
             return True
         else:
             return False
 
+    def notificate(self, status):
+        # signal = 2 -> Cannot connect SQL Server
+        # signal = 3 -> Warning canceled or success order
+        # signal = 4 -> proplem in executing queries
+        
+        # signal = 5 -> invalid phone number
+        # signal = 6 -> Foreign key constraint with sdt, not existed...
+        # signal = 7 -> Nothing to update
+        # signal = 8 -> Haven't choose an order
+        # signal = 9 -> the system is loading
+        # signal = 10 -> Application failer when initalize
+        # Signal = 11 -> invalide time
+        # signal = 12 -> "Conflict KEY CONSTRAINT IN Order"
+        # Signal = 13 -> Can only cancel a "pending" order
+        if status == 2:
+            messagebox.showwarning("Warning", "Can not connect to the SQL Server, Try again later!")
+        elif status == 3:
+            messagebox.showwarning("Warning", "The order is confirmed success or canceled or paid. We can't modify on it!")   
+        elif status == 4:
+                messagebox.showwarning("Warning", "There are some problem while executing queries, please try again later!")
+        elif status == 5:
+                messagebox.showwarning("Warning", "Please use phone number in correct format: 10 number with 0 to 9.")
+        elif status == 6:
+                messagebox.showwarning("Warning", "There is no member with the new phone number, please subcribe a new one!")
+        elif status == 7:
+                messagebox.showwarning("Warning", "There is nothing to update!")
+        elif status == 8:
+                messagebox.showwarning("Warning", "Please choose an order to continue!")
+        elif status == 9:
+                messagebox.showwarning("Warning", "The system is loading, please don't spawn!")
+        elif status == 10:
+                messagebox.showwarning("Warning", "Application failure, please restart the app!")
+        elif status == 11:
+                messagebox.showwarning("Warning", "Invalid time format, please use: hh:mm:ss")
+        elif status == 12:
+                messagebox.showwarning("Warning", "Cannot delete the order, there are foreign key constraints")
+        elif status == 13:
+                messagebox.showwarning("Warning", "Only pending order can be canceled!")
+      
 
 if __name__ == "__main__":
     root = tk.Tk()
