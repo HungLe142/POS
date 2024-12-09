@@ -29,6 +29,9 @@ BEGIN
 	-- Bat dau xu ly dieu kien ban dau
 	DECLARE @ID_DH VARCHAR(9)
 	DECLARE @NextID INT = 0
+	IF NOT EXISTS (SELECT 1 FROM DonHang_Taicho)
+		SET @ID_DH = 'OD000001'
+	ELSE
 	BEGIN
 		SELECT TOP 1 @ID_DH = ID_don_hang
 		FROM DonHang_Taicho
