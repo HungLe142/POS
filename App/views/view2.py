@@ -5,6 +5,8 @@ from widgets.table import on_item_select
 
 from tkinter import ttk, messagebox
 from controllers.view2_controller import get_orders
+from controllers.view2_controller import update_order
+
 
 
 def show_view2(parent):
@@ -127,19 +129,48 @@ def create_view2_right_frame_content(parent, root):
         # Dòng 6: Nút xác nhận thay đổi:
         frame6 = ttk.Frame(parent)
         frame6.pack(padx=10, pady=4, fill='x', anchor='w')
-        submit_button = ttk.Button(frame6, text="Xác nhận thay đổi", command=lambda: change_order_data(entry)) 
-        submit_button.pack(side='right', fill='x', expand=True, padx=5) 
+        submit_button = ttk.Button(frame6, text="Xác nhận thay đổi", command=lambda: change_order_data(root)) 
+        submit_button.pack(side='right', fill='x', expand=True, padx=5)
+        confirm_order_button = ttk.Button(frame6, text="Đóng đơn hàng", command=lambda: confirm_order(root)) 
+        confirm_order_button.pack(side='left', fill='x', expand=True, padx=5)  
 
-def change_order_data(entry):
-    print("Updating order data")
+def change_order_data(root):
+    try:
+        with root.view_lock:
+            status = update_order(root)
+            # Error code:
+            # 2: invalid phone number
+            # 3: invalid finish time
+            # 4 : Foreign key constranit with sdt, not existed...
+            # 5: No query for updating
+            if status == 2:
+                messagebox.showwarning("Warning", "Invalid phone number!")
+                return
+            elif status == 3:
+                messagebox.showwarning("Warning", "Invalid finish time!")
+                return
+            elif status == 4:
+                messagebox.showwarning("Warning", "No customer with selected exist, please subcribe a membership!")
+                return
+            elif status == 5:
+                messagebox.showwarning("Warning", "Nothing new to update!")
+                return
+    except TimeoutError:
+        messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
+
+def confirm_order(root):
     pass
 
 class Right_frame_V2_elements():
     def __init__(self):
-        entry_sdt = None
-        entry_note_status = None
-        entry_init_time = None
-        entry_fin_time = None
-        entry_order_note = None
-    
+        # Storing the entry
+        self.entry_sdt = None
+        self.entry_note_status = None
+        self.entry_init_time = None
+        self.entry_fin_time = None
+        self.entry_order_note = None
+        
+        # Storing other data of the choosen order
+        self.ID_don_hang = None
+
         

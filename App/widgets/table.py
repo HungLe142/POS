@@ -44,9 +44,13 @@ def on_item_select(table, main_view):
     with main_view.view_lock:
         if main_view.in_view2:
             if main_view.right_frame_v2:
-
+               
+                main_view.right_frame_v2.ID_don_hang = item_data[0]
+                
+                main_view.right_frame_v2.entry_sdt.config(state='normal')
                 main_view.right_frame_v2.entry_sdt.delete(0, 'end') 
                 main_view.right_frame_v2.entry_sdt.insert(0, item_data[1])
+                main_view.right_frame_v2.entry_sdt.config(state='readonly')
 
                 main_view.right_frame_v2.entry_note_status.config(state='normal')
                 main_view.right_frame_v2.entry_note_status.delete(0, 'end') 
@@ -60,6 +64,8 @@ def on_item_select(table, main_view):
 
                 main_view.right_frame_v2.entry_fin_time.delete(0, 'end') 
                 main_view.right_frame_v2.entry_fin_time.insert(0, item_data[6])
+                #if main_view.right_frame_v2.entry_fin_time.get() != 'None':
+                main_view.right_frame_v2.entry_fin_time.config(state='readonly')
 
                 main_view.right_frame_v2.entry_order_note.delete(0, 'end') 
                 main_view.right_frame_v2.entry_order_note.insert(0, item_data[7])
