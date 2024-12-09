@@ -8,11 +8,13 @@ AS
 BEGIN
 	-- Check dieu kien SDT
 	IF ISNUMERIC(@SdtKhachHang) = 0
-		RAISERROR('SDT phai la mot day so', 16, 1)
+		RAISERROR('SDT phai la mot day so', 16, 1);
 	IF LEFT(@SdtKhachHang, 1) != '0'
-		RAISERROR('SDT phai co so dau tien la "0"', 16, 1)
+		RAISERROR('SDT phai co so dau tien la "0"', 16, 1);
 	IF LEN(@SdtKhachHang) != 10
-		RAISERROR('SDT phai bao gom 10 chu so', 16, 1)
+		RAISERROR('SDT phai bao gom 10 chu so', 16, 1);
+	IF NOT EXISTS (SELECT 1 FROM KhachHang WHERE SDT_KhachHang = @SdtKhachHang)
+		RAISERROR('Khong tim thay SDT khach hang trong Database', 16, 1);
 
 	-- Check dieu kien ID NV
 	IF LEN(@ID_NV) != 8
@@ -37,6 +39,9 @@ BEGIN
 	-- Bat dau xu ly dieu kien ban dau
 	DECLARE @ID_DH VARCHAR(9)
 	DECLARE @NextID INT = 0
+	IF NOT EXISTS (SELECT 1 FROM DonHang_Tructuyen)
+		SET @ID_DH = 'ODS000001'
+	ELSE
 	BEGIN
 		SELECT TOP 1 @ID_DH = ID_don_hang
 		FROM DonHang_Tructuyen

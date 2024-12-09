@@ -57,7 +57,7 @@ BEGIN
         WHERE So_luong <= 0
     )
     BEGIN
-        RAISERROR ('Không được thêm món ăn trong đơn có số lượng là 0', 16, 1);
+        RAISERROR ('Món ăn thêm vào có số lượng không phù hợp', 16, 1);
         ROLLBACK TRANSACTION;
         RETURN
     END;
