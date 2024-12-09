@@ -9,25 +9,25 @@ def refresh_action(root):
         return
 
     def target():
-        with root.view_lock: 
-            print("Refreshing data...")
+        #with root.view_lock: 
+        print("Refreshing data...")
 
-            root.dish_buff = None
-            root.staff_buff = None
-            root.order_buff = None
+        root.dish_buff = None
+        root.staff_buff = None
+        root.order_buff = None
 
-            if root.in_view1:
-                root.show_view1()
-            elif root.in_view2:
-                root.show_view2()
-            elif root.in_view2:
-                root.show_view3()
-            elif root.in_view2:
-                root.show_view4()
+        if root.in_view1:
+            root.show_view1()
+        elif root.in_view2:
+            root.show_view2()
+        elif root.in_view2:
+            root.show_view3()
+        elif root.in_view2:
+            root.show_view4()
 
     thread = threading.Thread(target=target)
     thread.start()
-    thread.join(timeout=10)  # Thời gian chờ là 5 giây
+    thread.join(timeout=5)  # Thời gian chờ là 5 giây
 
     if thread.is_alive():
         print("Operation took too long and was cancelled.")
