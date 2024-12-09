@@ -24,6 +24,9 @@ VALUES
 /**/
 ( 
  'MA01', '2020-10-10', 30, 0, 60000
+),
+( 
+ 'MA02', '2020-10-10', 30, 0, 60000
 )
 
 INSERT INTO Quan_ly_mon_an_trong_DonHang --Thêm món ăn khi trạng thái là Pending -> hợp lệ
@@ -32,7 +35,7 @@ INSERT INTO Quan_ly_mon_an_trong_DonHang --Thêm món ăn khi trạng thái là 
 )
 VALUES
 (
-    'OD102201','MA01', '2020-10-10', 10
+    'OD102201','MA02', '2020-10-10', 10
 )
 
 SELECT * FROM DonHang WHERE ID_don_hang = 'OD102201'
@@ -55,6 +58,7 @@ VALUES
 (
     'OD102201','MA01', '2020-10-10', 10
 )
+GO
 SELECT * FROM DonHang WHERE ID_don_hang = 'OD102201'
 
 GO
