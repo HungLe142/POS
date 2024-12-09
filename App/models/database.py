@@ -1,6 +1,8 @@
 import pyodbc
 from config.config import get_connection
 import re
+from datetime import datetime
+
 # Staff queries
 
 def fetch_data():
@@ -55,7 +57,10 @@ def change_order_detail(main_view):
     if main_view.right_frame_v2 and main_view:
         
         if main_view.right_frame_v2.ID_don_hang is None:
-            return False
+            return 7
+
+        if main_view.right_frame_v2.Trang_thai == "Success" or main_view.right_frame_v2.Trang_thai == "Cancel":
+            return 6
 
         # When fetching get None, the data in entry will change to -> 'None'!!!
         ID_don_hang = main_view.right_frame_v2.ID_don_hang
@@ -127,8 +132,55 @@ def change_order_detail(main_view):
                 cursor.close()
         else:
             print("Can not connect to the Database.") 
-            return False
+            return 8
     else:
         print("Some thing wrong, the right frame in view 2 or the current choosen order in view 2 is not initialized correctly!")
         return False
 
+def change_order_status(main_view):
+    print("Close order")
+
+    if main_view.right_frame_v2 and main_view:
+        
+        if main_view.right_frame_v2.ID_don_hang is None:
+            return False
+
+        # When fetching get None, the data in entry will change to -> 'None'!!!
+        ID_don_hang = main_view.right_frame_v2.ID_don_hang
+        Gio_hoan_thanh = datetime.now().strftime('%H:%M:%S')
+        print("Giờ hoàn thành: ", Gio_hoan_thanh)
+        Ghi_chu_don_hang = main_view.right_frame_v2.entry_order_note.get()
+        Trang_thai = main_view.right_frame_v2.Trang_thai
+
+        print("Close order: id đơn: ",ID_don_hang, Gio_hoan_thanh, Ghi_chu_don_hang )
+
+        # Check input
+        if Ghi_chu_don_hang == 'None':
+            Ghi_chu_don_hang = ''
+
+        if Trang_thai == 'Success' or Trang_thai == 'Cancel':
+            return 2
+            
+        Trang_thai =  'Success'
+       # Mở kết nối và tạo con trỏ 
+        conn = get_connection() 
+        if conn: 
+            try: 
+                cursor = conn.cursor()
+                sql_update_query = """ UPDATE DonHang SET Gio_hoan_thanh = ?, Ghi_chu_don_hang = ?, Trang_thai = ? WHERE ID_don_hang = ? """ 
+                # Thực thi câu lệnh 
+                cursor.execute(sql_update_query, (Gio_hoan_thanh, Ghi_chu_don_hang, Trang_thai, ID_don_hang))
+                # Lưu thay đổi vào cơ sở dữ liệu 
+                conn.commit() 
+                print("Finish update order") 
+                # Đóng con trỏ 
+                cursor.close() 
+                return True 
+            except pyodbc.Error as e: 
+                print(f"Có lỗi xảy ra khi cập nhật đơn hàng: {e}") 
+                return 4 
+        else: 
+            return 3 
+
+def cancel_order(main_view):
+    pass
