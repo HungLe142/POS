@@ -34,3 +34,14 @@ def create_new_order():
     print(111)
     pass
 
+def fetch_orders():
+    print("Fetching orders")
+    conn = get_connection()
+    if conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM DonHang")
+        result = cursor.fetchall()
+        conn.close()
+        print("Finish fetching orders")
+        return result
+    return None
