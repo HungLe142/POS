@@ -65,6 +65,11 @@ UPDATE DonHang SET Trang_thai = 'Success',
                WHERE ID_don_hang = 'OD102201'
 GO
 
+GO
+DROP TRIGGER trg_MonAn_DonHang_check
+DELETE FROM Quan_ly_mon_an_trong_DonHang WHERE ID_don_hang = 'OD102201'
+DELETE FROM MonAn_TrongNgay WHERE Ngay = '2020-10-10'
+
 DELETE FROM DonHang
 WHERE ID_don_hang = 'OD102201'
 GO
