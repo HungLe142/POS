@@ -35,6 +35,18 @@ def get_list_of_staff():
         return result
     return None
 
+# Customer queries
+def get_list_of_cus():
+    conn = get_connection()
+    if conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM KhachHang")
+        result = cursor.fetchall()
+        conn.close()
+        return result
+    return None
+
+
 # Order queries
 def create_new_order():
     print(111)

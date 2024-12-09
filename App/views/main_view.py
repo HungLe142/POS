@@ -13,6 +13,7 @@ class MainView:
         self.dish_buff = None
         self.staff_buff = None
         self.order_buff = None
+        self.cus_buff = None
 
         # Handle multithread in Main_View
         self.view_lock = threading.Lock()
@@ -109,6 +110,7 @@ class MainView:
     def clear_content(self):
         self.dish_buff = None
         self.staff_buff = None
+        self.cus_buff = None
         self.order_buff = None
         self.right_frame_v2 = None
         self.right_frame_v1 = None
