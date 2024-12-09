@@ -59,7 +59,7 @@ def change_order_detail(main_view):
         if main_view.right_frame_v2.ID_don_hang is None:
             return 8
 
-        if main_view.right_frame_v2.Trang_thai == "Success" or main_view.right_frame_v2.Trang_thai == "Cancel":
+        if main_view.right_frame_v2.Trang_thai == 'Success' or main_view.right_frame_v2.Trang_thai == 'Cancel':
             return 3
 
         # When fetching get None, the data in entry will change to -> 'None'!!!
@@ -190,10 +190,11 @@ def cancel_order(main_view):
         if main_view.right_frame_v2.ID_don_hang is None:
             return 8
 
-        if main_view.right_frame_v2.Trang_thai != "Pending":
+        if main_view.right_frame_v2.Trang_thai != 'Pending':
+            print("Fix bug ",main_view.right_frame_v2.Trang_thai)
             return 13
 
-        Trang_thai = "Cancel"
+        Trang_thai = 'Cancel'
         ID_don_hang = main_view.right_frame_v2.ID_don_hang
         Gio_hoan_thanh = datetime.now().strftime('%H:%M:%S')
 
