@@ -62,17 +62,6 @@ BEGIN
         RETURN
     END;
 
-    IF EXISTS (
-        SELECT 1
-        FROM inserted AS i JOIN MonAn_TrongNgay AS M 
-        WHERE i.ID_mon_an = M.ID_mon_an
-    )
-    BEGIN
-        RAISERROR ('Món ăn thêm vào có số lượng không phù hợp', 16, 1);
-        ROLLBACK TRANSACTION;
-        RETURN
-    END;
-
     DECLARE @ID_dh AS VARCHAR(10)
     DECLARE QLMADH_cursor CURSOR
     FOR 
