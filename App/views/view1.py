@@ -55,10 +55,6 @@ def show_view1(parent):
     selected_orders = ["Selected Dish 1", "Selected Dish 2"] 
     for selected_order in selected_orders: 
         selected_listbox.insert(tk.END, selected_order)
-
-
-def search_action(query): 
-    print(f"Searching for: {query}") 
     
 
 
