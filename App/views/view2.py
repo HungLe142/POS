@@ -168,7 +168,7 @@ def cancel_order(root):
         with root.view_lock:
             status = cancel_the_order(root)
             if status == True:
-                messagebox.showinfo("Success", "Cancelthe order successfully!")
+                messagebox.showinfo("Success", "Cancel the order successfully!")
                 return
             else:
                 root.notificate(status)
