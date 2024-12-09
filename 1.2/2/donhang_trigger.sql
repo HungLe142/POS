@@ -6,10 +6,10 @@ BEGIN
     IF EXISTS (
         SELECT 1
         FROM inserted AS i
-        WHERE i.Trang_thai IN ('Not_paid', 'Paid', 'Success', 'Cancel')
+        WHERE i.Trang_thai IN ('Not_paid', 'Paid', 'Success', 'Cancel') OR i.Tong_tien != 0
     )
     BEGIN
-        RAISERROR ('Đơn hàng vừa tạo chỉ có thể ở trạng thái Pending', 16, 1);
+        RAISERROR ('Đơn hàng vừa tạo chỉ có thể ở trạng thái Pending và có tổng tiền là 0', 16, 1);
         ROLLBACK TRANSACTION;
         RETURN
     END;
