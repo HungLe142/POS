@@ -4,9 +4,7 @@ from widgets.frame import create_sb_rf
 from widgets.table import on_item_select
 
 from tkinter import ttk, messagebox
-from controllers.view2_controller import get_orders
-from controllers.view2_controller import update_order
-from controllers.view2_controller import update_order1
+from controllers.view2_controller import get_orders, update_order, update_order1, cancel_the_order
 
 
 
@@ -145,38 +143,11 @@ def change_order_data(root):
     try:
         with root.view_lock:
             status = update_order(root)
-            # Error code:
-            # 2: invalid phone number
-            # 3: invalid finish time
-            # 4 : Foreign key constranit with sdt, not existed...
-            # 5: No query for updating
-            # 6: Success or canceled order
-            # 7: Haven't choose an order
-            # 8: Cannot connect to SQL server
             if status == True:
-                messagebox.showwarning("Success", "Update order succesfully!")
+                messagebox.showinfo("Success", "Update order successfully!")
                 return
-            elif status == 2:
-                messagebox.showwarning("Warning", "Invalid phone number!")
-                return
-            elif status == 3:
-                messagebox.showwarning("Warning", "Invalid finish time!")
-                return
-            elif status == 4:
-                messagebox.showwarning("Warning", "No customer with selected exist, please subcribe a membership!")
-                return
-            elif status == 5:
-                messagebox.showwarning("Warning", "Nothing new to update!")
-                return
-            elif status == 6:
-                messagebox.showwarning("Warning", "The order was confirmed success or canceled, cannot update more!")
-                return
-            elif status == 7:
-                messagebox.showwarning("Warning", "Please choose an order for starting!")
-                return
-            elif status == 8:
-                messagebox.showwarning("Warning", "Cannot connect to SQL server, please try again!")
-                return
+            else:
+                root.notificate(status)
     except TimeoutError:
         messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
 
@@ -184,32 +155,25 @@ def close_order(root):
     try:
         with root.view_lock:
             status = update_order1(root)
-            # Error code:
-            # 2: canceled or success  order
-            # 3: Cannot connect to the SQL Server
-            # 4: Problems with executing queries
-            # 6: success or cancelled order
             if status == True:
-                messagebox.showwarning("Success", "Update order succesfully!")
+                messagebox.showinfo("Success", "Update order successfully!")
                 return
-
-            elif status == 2:
-                messagebox.showwarning("Warning", "Can not close the order that is confirmed fail or success!")
-                return
-            elif status == 3:
-                messagebox.showwarning("Warning", "Can not connect to the SQL Server, Try again later!")
-                return
-            elif status == 4:
-                messagebox.showwarning("Warning", "There are some problem while executing queries, please try again later!")
-                return
-            elif status == 6:
-                messagebox.showwarning("Warning", "The order was confirmed succesfully or canceled, you can close it more!")
-                return
+            else:
+                root.notificate(status)
     except TimeoutError:
         messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
 
 def cancel_order(root):
-    pass
+    try:
+        with root.view_lock:
+            status = cancel_the_order(root)
+            if status == True:
+                messagebox.showinfo("Success", "Cancelthe order successfully!")
+                return
+            else:
+                root.notificate(status)
+    except TimeoutError:
+        messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
 
 class Right_frame_V2_elements():
     def __init__(self):

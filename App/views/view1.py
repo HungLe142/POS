@@ -55,8 +55,6 @@ def show_view1(parent):
     selected_orders = ["Selected Dish 1", "Selected Dish 2"] 
     for selected_order in selected_orders: 
         selected_listbox.insert(tk.END, selected_order)
-    
-
 
 def create_dish_table(parent):
     dish_table = ttk.Treeview(parent, columns = ('ID', 'Số lượng', 'Giảm giá', 'Giá bán' ), show = 'headings', height=8)
