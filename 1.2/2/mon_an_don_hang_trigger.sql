@@ -57,7 +57,18 @@ BEGIN
         WHERE So_luong <= 0
     )
     BEGIN
-        RAISERROR ('Không được thêm món ăn trong đơn có số lượng là 0', 16, 1);
+        RAISERROR ('Món ăn thêm vào có số lượng không phù hợp', 16, 1);
+        ROLLBACK TRANSACTION;
+        RETURN
+    END;
+
+    IF EXISTS (
+        SELECT 1
+        FROM inserted AS i JOIN MonAn_TrongNgay AS M 
+        WHERE i.ID_mon_an = M.ID_mon_an
+    )
+    BEGIN
+        RAISERROR ('Món ăn thêm vào có số lượng không phù hợp', 16, 1);
         ROLLBACK TRANSACTION;
         RETURN
     END;
