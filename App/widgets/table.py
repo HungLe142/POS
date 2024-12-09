@@ -1,6 +1,6 @@
 import threading
 from tkinter import messagebox
-
+from widgets.view1_actions import insert_order_dish
 def refresh_action(root): 
 
     # Check in first loading
@@ -44,7 +44,6 @@ def on_item_select(table, main_view):
     with main_view.view_lock:
         if main_view.in_view2:
             if main_view.right_frame_v2:
-               
                 main_view.right_frame_v2.ID_don_hang = item_data[0]
                 main_view.right_frame_v2.Trang_thai = item_data[3]
                 
@@ -71,7 +70,20 @@ def on_item_select(table, main_view):
 
                 main_view.right_frame_v2.entry_order_note.delete(0, 'end') 
                 main_view.right_frame_v2.entry_order_note.insert(0, item_data[7])
-
             else:
                 print("Some thing went from in view 2, the right frame contents were not initialized!!")
+                return
+        elif main_view.in_view1:
+            if main_view.right_frame_v1:
+                main_view.right_frame_v1.ID_mon_an = item_data[0]
+                main_view.right_frame_v1.Ngay = item_data[1]
+                main_view.right_frame_v1.So_luong_con = item_data[2]
+                main_view.right_frame_v1.Giam_gia = item_data[3]
+                main_view.right_frame_v1.Gia_ban_trong_ngay = item_data[4]
+                if main_view.right_frame_v1.right_frame:
+                    insert_order_dish(main_view.right_frame_v1.right_frame, main_view)
+                else:
+                    print("Some thing went wrong, the right frame of view 1 is not initialized correctly!")
+            else:
+                print("Some thing went from in view 1, the right frame contents were not initialized!!")
                 return

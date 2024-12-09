@@ -21,6 +21,11 @@ class MainView:
         self.in_view3 = False
         self.in_view4 = False
 
+        # Right frame of views:
+        self.right_frame_v2 = None
+        self.right_frame_v1 = None
+        self.order_dish = []
+
         self.root = root
         self.root.title("POS App")
         self.root.geometry("900x600")
@@ -106,6 +111,8 @@ class MainView:
         self.staff_buff = None
         self.order_buff = None
         self.right_frame_v2 = None
+        self.right_frame_v1 = None
+        self.order_dish = []
         #gc.collect() # Destruct the garbage
         for widget in self.content_frame.winfo_children():
             widget.destroy()
