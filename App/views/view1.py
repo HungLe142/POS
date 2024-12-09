@@ -2,6 +2,8 @@
 import tkinter as tk
 from controllers.view1_controller import create_order
 from controllers.view1_controller import get_daily_dishes
+from widgets.table import refresh_action
+from widgets.frame import create_sb_rf
 from tkinter import ttk
 
 
@@ -54,32 +56,11 @@ def show_view1(parent):
     for selected_order in selected_orders: 
         selected_listbox.insert(tk.END, selected_order)
 
-def create_sb_rf(parent, root): 
-    frame = tk.Frame(parent) 
-    create_search_bar(frame) 
-    create_refresh_button(frame, root) 
-    return frame
-
-def create_search_bar(parent):
-    search_label = tk.Label(parent, text="Search:") 
-    search_label.pack(side=tk.LEFT, padx=5) 
-
-    search_entry = tk.Entry(parent) 
-    search_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=5) 
-    search_button = tk.Button(parent, text="Go", command=lambda: search_action(search_entry.get())) 
-    search_button.pack(side=tk.LEFT, padx=5)
-
-def create_refresh_button(parent, root):
-    refresh_button = tk.Button(parent, text="Refresh", command=lambda:refresh_action(root)) 
-    refresh_button.pack(side=tk.RIGHT, padx=5)
 
 def search_action(query): 
     print(f"Searching for: {query}") 
     
-def refresh_action(root): 
-    print("Refreshing data...")
-    root.dish_buff = None
-    root.show_view1()
+
 
 def create_dish_table(parent):
     dish_table = ttk.Treeview(parent, columns = ('ID', 'Số lượng', 'Giảm giá', 'Giá bán' ), show = 'headings', height=8)
