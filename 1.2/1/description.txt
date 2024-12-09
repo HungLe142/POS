@@ -1,14 +1,13 @@
 YÊU CẦU:
-    Viết các thủ tục để thêm (insert), sửa (update), xóa (delete) dữ liệu vào  MỘT bảng dữ liệu. Yêu cầu: 
+    Viết các thủ tục để thêm (insert), sửa (update), xóa (delete) dữ liệu vào MỘT bảng dữ liệu. Yêu cầu: 
         - Phải có thực hiện việc kiểm tra dữ liệu hợp lệ (validate) để đảm bảo các ràng  buộc của bảng dữ liệu 
         - Xuất ra thông báo lỗi có nghĩa, chỉ ra được lỗi sai cụ thể (không ghi chung chung  là “Lỗi nhập dữ liệu!”) 
     Ví dụ: kiểm tra tuổi nhân viên > 18 tuổi, kiểu format số điện thoại, email là hợp lệ,  lương nhân viên nhỏ hơn lương giám đốc …  
 
-CHỌN BẢNG: Nhân viên 
+CHỌN BẢNG: Đơn hàng (update từ tối 7/12)
     - Đã có: Các trigger khi INSERT, UPDATE:
         + Trigger tự động tạo bảng bên nhận khi insert một nhân viên, xem 1.1/1/semantic constraints/trigger/auto_ben_nhan/nv.sql
         + Trigger tự động cập nhật hệ số lương của nhân viên dựa trên chức vụ, xem 1.1/1/semantic constraints/trigger/staff_salary_cofficient.sql
         + Xem các ràng buộc liên quan sinhvien
 
 PHÂN CÔNG: Toàn
-

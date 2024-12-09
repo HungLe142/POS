@@ -1,2 +1,2 @@
 SELECT *
-FROM KhachHang
+FROM NhanVien
