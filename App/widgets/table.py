@@ -46,7 +46,7 @@ def on_item_select(table, main_view):
             if main_view.right_frame_v2:
                
                 main_view.right_frame_v2.ID_don_hang = item_data[0]
-                main_view.right_frame_v2.Trang_thai = item_data[2]
+                main_view.right_frame_v2.Trang_thai = item_data[3]
                 
                 main_view.right_frame_v2.entry_sdt.config(state='normal')
                 main_view.right_frame_v2.entry_sdt.delete(0, 'end') 
