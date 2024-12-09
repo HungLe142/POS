@@ -6,6 +6,7 @@ from widgets.table import on_item_select
 from tkinter import ttk, messagebox
 from controllers.view2_controller import get_orders
 from controllers.view2_controller import update_order
+from controllers.view2_controller import update_order1
 
 
 
@@ -126,13 +127,19 @@ def create_view2_right_frame_content(parent, root):
         root.right_frame_v2.entry_order_note = ttk.Entry(frame5)
         root.right_frame_v2.entry_order_note.pack(side='right', fill='x', expand=True, padx=5) 
 
-        # Dòng 6: Nút xác nhận thay đổi:
+        # Dòng 6: Nút xác nhận thay đổi, hủy đơn:
         frame6 = ttk.Frame(parent)
         frame6.pack(padx=10, pady=4, fill='x', anchor='w')
         submit_button = ttk.Button(frame6, text="Xác nhận thay đổi", command=lambda: change_order_data(root)) 
-        submit_button.pack(side='right', fill='x', expand=True, padx=5)
-        confirm_order_button = ttk.Button(frame6, text="Đóng đơn hàng", command=lambda: confirm_order(root)) 
-        confirm_order_button.pack(side='left', fill='x', expand=True, padx=5)  
+        submit_button.pack(side='left', fill='x', expand=True, padx=5)
+        cancel_order_button = ttk.Button(frame6, text="Hủy đơn", command=lambda: cancel_order(root)) 
+        cancel_order_button.pack(side='right', fill='x', expand=True, padx=5)
+
+        # Dòng 7: Nút đóng đơn:
+        frame7 = ttk.Frame(parent)
+        frame7.pack(padx=10, pady=4, fill='x', anchor='w')
+        close_order_button = ttk.Button(frame7, text="Đóng đơn hàng", command=lambda: close_order(root)) 
+        close_order_button.pack(side='left', fill='x', expand=True, padx=5)    
 
 def change_order_data(root):
     try:
@@ -143,7 +150,13 @@ def change_order_data(root):
             # 3: invalid finish time
             # 4 : Foreign key constranit with sdt, not existed...
             # 5: No query for updating
-            if status == 2:
+            # 6: Success or canceled order
+            # 7: Haven't choose an order
+            # 8: Cannot connect to SQL server
+            if status == True:
+                messagebox.showwarning("Success", "Update order succesfully!")
+                return
+            elif status == 2:
                 messagebox.showwarning("Warning", "Invalid phone number!")
                 return
             elif status == 3:
@@ -155,10 +168,47 @@ def change_order_data(root):
             elif status == 5:
                 messagebox.showwarning("Warning", "Nothing new to update!")
                 return
+            elif status == 6:
+                messagebox.showwarning("Warning", "The order was confirmed success or canceled, cannot update more!")
+                return
+            elif status == 7:
+                messagebox.showwarning("Warning", "Please choose an order for starting!")
+                return
+            elif status == 8:
+                messagebox.showwarning("Warning", "Cannot connect to SQL server, please try again!")
+                return
     except TimeoutError:
         messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
 
-def confirm_order(root):
+def close_order(root):
+    try:
+        with root.view_lock:
+            status = update_order1(root)
+            # Error code:
+            # 2: canceled or success  order
+            # 3: Cannot connect to the SQL Server
+            # 4: Problems with executing queries
+            # 6: success or cancelled order
+            if status == True:
+                messagebox.showwarning("Success", "Update order succesfully!")
+                return
+
+            elif status == 2:
+                messagebox.showwarning("Warning", "Can not close the order that is confirmed fail or success!")
+                return
+            elif status == 3:
+                messagebox.showwarning("Warning", "Can not connect to the SQL Server, Try again later!")
+                return
+            elif status == 4:
+                messagebox.showwarning("Warning", "There are some problem while executing queries, please try again later!")
+                return
+            elif status == 6:
+                messagebox.showwarning("Warning", "The order was confirmed succesfully or canceled, you can close it more!")
+                return
+    except TimeoutError:
+        messagebox.showwarning("Warning", "Please wait, the the app is executing the query")
+
+def cancel_order(root):
     pass
 
 class Right_frame_V2_elements():
@@ -172,5 +222,6 @@ class Right_frame_V2_elements():
         
         # Storing other data of the choosen order
         self.ID_don_hang = None
+        self.Trang_thai = None
 
         
