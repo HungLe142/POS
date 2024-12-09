@@ -1,7 +1,4 @@
--- Lấy tổng số tiền mà nhân viên đã bán được trong tháng X, sort từ lớn đến bé
-
-
--- Lấy tổng số giờ làm của nhân viên
+-- Lấy tiền lương của nhân viên theo tháng
 CREATE OR ALTER PROCEDURE LayGioLamNhanVienTheoThangNam
 	@TenNV VARCHAR(50),
 	@Thang INT,
